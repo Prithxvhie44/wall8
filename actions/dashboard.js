@@ -60,7 +60,20 @@ export async function createAccount(data) {
             });
         }
 
+        const accounts = await db.account.findMany({
+            where: { userId: user.id },
+            orderBy: { createdAt: "desc" },
+            include: {
+                _count: {
+                    select: {
+                        transactions: true,
+                    },
+                },
+            },
+        });
 
+
+        const serializedAccounts = accounts.map(serializeTransaction);
 
         // Create new account
         const account = await db.account.create({
@@ -81,5 +94,5 @@ export async function createAccount(data) {
 
 
 
-    catch (error) { throw new Error(error.message);}
+    catch (error) { throw new Error(error.message); }
 }
