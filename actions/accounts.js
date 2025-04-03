@@ -52,7 +52,6 @@ export async function updateDefaultAccount(accountId) {
     return { success: false, error: error.message };
   }
 }
-
 export async function getAccountWithTransactions(accountId) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
@@ -77,7 +76,6 @@ export async function getAccountWithTransactions(accountId) {
       },
     },
   });
-
 
   if (!account) return null;
 
