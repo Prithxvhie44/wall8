@@ -2,6 +2,7 @@ import { getAccountWithTransactions } from '@/actions/accounts'
 import React, { Suspense } from 'react'
 import TransactionTable from '../_components/transaction-table';
 import { BarLoader } from 'react-spinners';
+import AccountChart from '../_components/account-chart';
 
 const AccountsPage = async ({ params }) => {
 
@@ -42,14 +43,21 @@ const AccountsPage = async ({ params }) => {
 
             {/* chart section */}
 
-            {/* transaction table */}
             <Suspense
                 fallback={<BarLoader className="mt-4" width={"100%"} color="#9333ea" />}
             >
-                <TransactionTable transactions={transactions} />
+                <AccountChart transactions={transactions} />
             </Suspense>
 
-        </div>
+
+            {/* transaction table */ }
+    <Suspense
+        fallback={<BarLoader className="mt-4" width={"100%"} color="#9333ea" />}
+    >
+        <TransactionTable transactions={transactions} />
+    </Suspense>
+
+        </div >
 
 
     )
