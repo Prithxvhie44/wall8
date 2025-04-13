@@ -163,7 +163,7 @@ const TransactionTable = ({ transactions }) => {
                         placeholder='Search transactions...'
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-8 " />
+                        className="pl-8" />
                 </div>
 
                 <div className='flex gap-2'>
@@ -207,11 +207,11 @@ const TransactionTable = ({ transactions }) => {
             </div>
 
             {/* transactions */}
-            <div className='rounded-md border'>
+            <div className='rounded-lg border border-gray-300 shadow-md bg-white'>
                 <Table>
 
                     <TableHeader>
-                        <TableRow>
+                        <TableRow className="bg-gray-100">
                             <TableHead className="w-[50px]"><Checkbox checked={
                                 selectedIds.length === filterAndSortedTransactions.length &&
                                 filterAndSortedTransactions.length > 0

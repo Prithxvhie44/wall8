@@ -1,11 +1,10 @@
 "use client";
 
-
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { endOfDay, format, startOfDay, subDays } from 'date-fns';
-import React, { useMemo, useState } from 'react'
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
+import React, { useMemo, useState } from 'react';
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 
 const DATE_RANGES = {
     "7D": { label: "Last 7 Days", days: 7 },
@@ -16,10 +15,7 @@ const DATE_RANGES = {
 };
 
 const AccountChart = ({ transactions }) => {
-
     const [dateRange, setDateRange] = useState("1M");
-
-
 
     const filteredData = useMemo(() => {
         const range = DATE_RANGES[dateRange];
@@ -64,13 +60,11 @@ const AccountChart = ({ transactions }) => {
         );
     }, [filteredData]);
 
-
     return (
-
-        <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-7">
-                <CardTitle className="text-base font-normal">Transactions Overview</CardTitle>
-                <Select defaultValue={dateRange} onValueChange={setDateRange} >
+        <Card className="bg-white border border-gray-300 shadow-lg rounded-lg p-6">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+                <CardTitle className="text-lg font-semibold">Transactions Overview</CardTitle>
+                <Select defaultValue={dateRange} onValueChange={setDateRange}>
                     <SelectTrigger className="w-[140px]">
                         <SelectValue placeholder="Select Range" />
                     </SelectTrigger>
@@ -82,35 +76,40 @@ const AccountChart = ({ transactions }) => {
                         ))}
                     </SelectContent>
                 </Select>
-
             </CardHeader>
             <CardContent>
                 <div className="flex justify-around mb-6 text-sm">
                     <div className="text-center">
                         <p className="text-muted-foreground">Total Income</p>
-                        <p className="text-lg font-bold text-green-500">
-                            ${totals.income.toFixed(2)}
-                        </p>
+                        <div className="flex items-center justify-center">
+                            <svg className="h-5 w-5 text-green-500 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C10.9 2 10 2.9 10 4V10H4C2.9 10 2 10.9 2 12V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V12C22 10.9 21.1 10 20 10H14V4C14 2.9 13.1 2 12 2ZM12 0C13.1 0 14 0.9 14 2V10H22C23.1 10 24 10.9 24 12V20C24 21.1 23.1 22 22 22H2C0.9 22 0 21.1 0 20V12C0 10.9 0.9 10 2 10H10V2C10 0.9 10.9 0 12 0Z" />
+                            </svg>
+                            <p className="text-lg font-bold text-green-500">${totals.income.toFixed(2)}</p>
+                        </div>
                     </div>
                     <div className="text-center">
                         <p className="text-muted-foreground">Total Expenses</p>
-                        <p className="text-lg font-bold text-red-500">
-                            ${totals.expense.toFixed(2)}
-                        </p>
+                        <div className="flex items-center justify-center">
+                            <svg className="h-5 w-5 text-red-500 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C10.9 2 10 2.9 10 4V10H4C2.9 10 2 10.9 2 12V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V12C22 10.9 21.1 10 20 10H14V4C14 2.9 13.1 2 12 2ZM12 0C13.1 0 14 0.9 14 2V10H22C23.1 10 24 10.9 24 12V20C24 21.1 23.1 22 22 22H2C0.9 22 0 21.1 0 20V12C0 10.9 0.9 10 2 10H10V2C10 0.9 10.9 0 12 0Z" />
+                            </svg>
+                            <p className="text-lg font-bold text-red-500">${totals.expense.toFixed(2)}</p>
+                        </div>
                     </div>
                     <div className="text-center">
                         <p className="text-muted-foreground">Net</p>
-                        <p
-                            className={`text-lg font-bold ${totals.income - totals.expense >= 0
-                                    ? "text-green-500"
-                                    : "text-red-500"
-                                }`}
-                        >
-                            ${(totals.income - totals.expense).toFixed(2)}
-                        </p>
+                        <div className="flex items-center justify-center">
+                            <svg className="h-5 w-5 text-gray-500 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C10.9 2 10 2.9 10 4V10H4C2.9 10 2 10.9 2 12V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V12C22 10.9 21.1 10 20 10H14V4C14 2.9 13.1 2 12 2ZM12 0C13.1 0 14 0.9 14 2V10H22C23.1 10 24 10.9 24 12V20C24 21.1 23.1 22 22 22H2C0.9 22 0 21.1 0 20V12C0 10.9 0.9 10 2 10H10V2C10 0.9 10.9 0 12 0Z" />
+                            </svg>
+                            <p className={`text-lg font-bold ${totals.income - totals.expense >= 0 ? "text-green-500" : "text-red-500"}`}>
+                                ${(totals.income - totals.expense).toFixed(2)}
+                            </p>
+                        </div>
                     </div>
                 </div>
-                <div className="h-[300px]">
+                <div className="h-[300px] bg-gray-50 rounded-lg p-4 shadow-md">
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                             data={filteredData}
@@ -154,12 +153,8 @@ const AccountChart = ({ transactions }) => {
                     </ResponsiveContainer>
                 </div>
             </CardContent>
-
         </Card>
-
-
-
-    )
-}
+    );
+};
 
 export default AccountChart;

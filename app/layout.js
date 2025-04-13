@@ -3,8 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
-
-
+import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 
 const inter = Inter({ subsets : ["latin"]});
 
@@ -16,25 +15,33 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body
-        className={`${inter.className}`}
-      >
+      <html lang="en">
+        <body className="bg-gradient-to-b from-[#e0f7fa] to-[#ffffff]">
+          {/* Header */}
+          <Header />
 
-        {/*header*/}
-      <Header/>
-        
-        <main className="min-h-screen">{children}</main>
-        <Toaster richColors/>
+          <main className="min-h-screen">{children}</main>
+          <Toaster richColors />
 
-        {/*footer*/}
-        <footer className="bg-blue-50 py-12">
-        <div className="container mx-auto text-center px-4 text-grey-600">
-          <p>Made by Prithviraj ❤️</p>
-        </div>
-        </footer>
-      </body>
-    </html>
+          {/* Footer */}
+          <footer className="bg-[#1e3a8a] py-12 text-white footer">
+            <div className="container mx-auto text-center px-4">
+              <p className="mb-4">Made by Prithviraj ❤️</p>
+              <div className="flex justify-center space-x-6">
+                <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
+                  <FaLinkedin size={24} />
+                </a>
+                <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
+                  <FaGithub size={24} />
+                </a>
+                <a href="https://www.instagram.com/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
+                  <FaInstagram size={24} />
+                </a>
+              </div>
+            </div>
+          </footer>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

@@ -79,12 +79,12 @@ export function CreateAccountDrawer({ children }) {
         <DrawerHeader>
           <DrawerTitle>Create New Account</DrawerTitle>
         </DrawerHeader>
-        <div className="px-4 pb-4">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <div className="px-6 pb-6 border border-blue-300 shadow-lg rounded-lg">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-2">
               <label
                 htmlFor="name"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-sm font-medium leading-none"
               >
                 Account Name
               </label>
@@ -92,6 +92,7 @@ export function CreateAccountDrawer({ children }) {
                 id="name"
                 placeholder="e.g., Main Checking"
                 {...register("name")}
+                className="focus:ring-2 focus:ring-blue-500 border border-blue-300 bg-white"
               />
               {errors.name && (
                 <p className="text-sm text-red-500">{errors.name.message}</p>
@@ -101,7 +102,7 @@ export function CreateAccountDrawer({ children }) {
             <div className="space-y-2">
               <label
                 htmlFor="type"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-sm font-medium leading-none"
               >
                 Account Type
               </label>
@@ -125,7 +126,7 @@ export function CreateAccountDrawer({ children }) {
             <div className="space-y-2">
               <label
                 htmlFor="balance"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-sm font-medium leading-none"
               >
                 Initial Balance
               </label>
@@ -135,13 +136,14 @@ export function CreateAccountDrawer({ children }) {
                 step="0.01"
                 placeholder="0.00"
                 {...register("balance")}
+                className="focus:ring-2 focus:ring-blue-500 border border-blue-300 bg-white"
               />
               {errors.balance && (
                 <p className="text-sm text-red-500">{errors.balance.message}</p>
               )}
             </div>
 
-            <div className="flex items-center justify-between rounded-lg border p-3">
+            <div className="flex items-center justify-between rounded-lg border border-blue-300 p-4">
               <div className="space-y-0.5">
                 <label
                   htmlFor="isDefault"
@@ -160,15 +162,15 @@ export function CreateAccountDrawer({ children }) {
               />
             </div>
 
-            <div className="flex gap-4 pt-4">
+            <div className="flex gap-4 pt-6">
               <DrawerClose asChild>
-                <Button type="button" variant="outline" className="flex-1">
+                <Button type="button" variant="outline" className="flex-1 hover:bg-gray-100">
                   Cancel
                 </Button>
               </DrawerClose>
               <Button
                 type="submit"
-                className="flex-1"
+                className="flex-1 bg-blue-600 text-white hover:bg-blue-700 transition duration-300"
                 disabled={createAccountLoading}
               >
                 {createAccountLoading ? (
@@ -186,7 +188,6 @@ export function CreateAccountDrawer({ children }) {
       </DrawerContent>
     </Drawer>
   );
-} 
-
+}
 
 export default CreateAccountDrawer

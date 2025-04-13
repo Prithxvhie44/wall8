@@ -51,20 +51,22 @@ export function AccountCard({ account }) {
   }, [error]);
 
   return (
-    <Card className="hover:shadow-md transition-shadow group relative">
+    <Card className="hover:shadow-lg transition-all duration-300 group relative">
       <Link href={`/account/${id}`}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium capitalize">
+          <CardTitle className="text-sm font-medium capitalize flex items-center gap-2">
+            <CreditCard className="h-4 w-4 text-purple-500" />
             {name}
           </CardTitle>
           <Switch
             checked={isDefault}
             onClick={handleDefaultChange}
             disabled={updateDefaultLoading}
+            className="data-[state=checked]:bg-purple-500"
           />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">
+          <div className="text-2xl font-bold text-gray-900">
             ${parseFloat(balance).toFixed(2)}
           </div>
           <p className="text-xs text-muted-foreground">
@@ -72,11 +74,11 @@ export function AccountCard({ account }) {
           </p>
         </CardContent>
         <CardFooter className="flex justify-between text-sm text-muted-foreground">
-          <div className="flex items-center">
+          <div className="flex items-center transition-colors duration-200 hover:text-green-500">
             <ArrowUpRight className="mr-1 h-4 w-4 text-green-500" />
             Income
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center transition-colors duration-200 hover:text-red-500">
             <ArrowDownRight className="mr-1 h-4 w-4 text-red-500" />
             Expense
           </div>

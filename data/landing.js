@@ -53,8 +53,8 @@ import {
     },
     {
       icon: <Globe className="h-8 w-8 text-blue-600" />,
-      title: "Multi-Currency",
-      description: "Support for multiple currencies with real-time conversion",
+      title: "Monthly Report",
+      description: "Get a monthly report of your spending and income",
     },
     {
       icon: <Zap className="h-8 w-8 text-blue-600" />,
