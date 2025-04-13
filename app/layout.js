@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         {/*footer*/}
         <footer className="bg-blue-50 py-12">
         <div className="container mx-auto text-center px-4 text-grey-600">
-          <p>Made by Prithviraj </p>
+          <p>Made by Prithviraj ❤️</p>
         </div>
         </footer>
       </body>
