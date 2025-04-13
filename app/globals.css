@@ -121,6 +121,23 @@
   }
 }
 
+@layer utilities {
+  .perspective {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
 
 .hero-image-wrapper{
   perspective: 1000px;
@@ -134,4 +151,121 @@
 
 .hero-image.scrolled {
   transform: rotateX(0deg) scale(1) translateY(40px);
+}
+
+.honeycomb {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  transform: translateY(25px);
+  padding-bottom: 50px;
+}
+
+.honeycomb-cell {
+  flex: 0 1 200px;
+  max-width: 250px;
+  height: 220px;
+  margin: 2px 12px 15px;
+  position: relative;
+  padding: 0.5em;
+  text-align: center;
+  z-index: 1;
+  animation: honeycombIn 0.4s ease-out forwards;
+  animation-delay: var(--delay);
+  opacity: 0;
+  transform: scale(0);
+}
+
+.honeycomb-cell::before,
+.honeycomb-cell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+  animation: honeycombIn 0.4s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.honeycomb-cell::before {
+  background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 100%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  opacity: 0.1;
+  z-index: -1;
+  transition: transform 0.3s ease;
+}
+
+.honeycomb-cell::after {
+  background: linear-gradient(45deg, #3b82f6 0%, #8b5cf6 100%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  opacity: 0.1;
+  z-index: -1;
+  transition: transform 0.3s ease;
+  transform: rotate(var(--rotation));
+}
+
+.honeycomb-cell:hover::before {
+  transform: scale(1.05) rotate(180deg);
+}
+
+.honeycomb-cell:hover::after {
+  transform: scale(1.05) rotate(calc(var(--rotation) + 180deg));
+}
+
+.honeycomb-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: white;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+@keyframes honeycombIn {
+  from {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px),
+                    linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Set the global background color */
+body {
+  background-color: #e0f2fe; /* Soft Blue */
+}
+
+/* footer.css or in your globals.css */
+.footer {
+  background-color: #ac9dda !important; /* Dark Blue */
+  color: #ffffff; /* White font color */
+  padding: 20px; /* Adjust padding as needed */
+  text-align: center; /* Center the text */
 }
