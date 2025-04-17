@@ -28,13 +28,13 @@ export default function RootLayout({ children }) {
             <div className="container mx-auto text-center px-4">
               <p className="mb-4">Made by Prithviraj ❤️</p>
               <div className="flex justify-center space-x-6">
-                <a href="https://www.linkedin.com/in/prithviraj44/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
+                <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
                   <FaLinkedin size={24} />
                 </a>
-                <a href="https://github.com/Prithxvhie44" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
+                <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
                   <FaGithub size={24} />
                 </a>
-                <a href="https://www.instagram.com/prithxvhie.44/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
+                <a href="https://www.instagram.com/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-300 transition duration-300">
                   <FaInstagram size={24} />
                 </a>
               </div>
